@@ -1,38 +1,38 @@
-import AddStoreButton from '@/components/AddStoreButton';
-import StoreCard from '@/components/StoreCard';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AddStoreButton from '../components/AddStoreButton';
+import StoreCard from '../components/StoreCard';
 
-export default function Index() {
+export default function App() {
   const [stores, setStores] = useState<string[]>([]);
 
-  const handleAddStore = (storeName: string) => {
-    setStores((prev) => [...prev, storeName]);
+  const addStore = (store: string) => {
+    setStores([...stores, store]);
   };
 
-  const handleDeleteStore = (index: number) => {
-    setStores((prev) => prev.filter((_, i) => i !== index));
+  const deleteStore = (index: number) => {
+    setStores(stores.filter((_, i) => i !== index));
   };
 
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.storeContainer}>
-        {stores.map((store, index) => (
-          <StoreCard
-            key={index}
-            name={store}
-            onDelete={() => handleDeleteStore(index)}
-          />
-        ))}
-      </ScrollView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <FlatList
+          data={stores}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
+            <StoreCard name={item} onDelete={() => deleteStore(index)} />
+          )}
+        />
 
-      <AddStoreButton onAddStore={handleAddStore} />
+        {/* Use the reusable AddStoreButton component */}
+        <AddStoreButton onAddStore={addStore} />
+      </View>
     </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f0f0f0' },
-  storeContainer: { paddingTop: 0, paddingBottom: 120, alignItems: 'stretch' },
+  container: { flex: 1, padding: 20 },
 });
