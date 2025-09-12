@@ -23,7 +23,8 @@ Clean and responsive UI with touch-friendly buttons.
 📸 Screenshots / Demo
 
 
-<img width="402" height="874" alt="Simulator Screenshot - iPhone 16 Pro - 2025-09-12 at 13 06 17" src="https://github.com/user-attachments/assets/01039c21-59fa-40a2-b2ee-72cc67f70c10" />
+
+<img width="402" height="874" alt="Simulator Screenshot - iPhone 16 Pro - 2025-09-12 at 13 31 27" src="https://github.com/user-attachments/assets/06d4eaae-6f90-4ac7-bbdb-fc73c9a727ac" />
 
 
 
