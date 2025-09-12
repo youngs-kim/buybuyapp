@@ -1,50 +1,63 @@
-# Welcome to your Expo app 👋
+🛒 BuyBuy App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native app for managing stores and items, helping users plan and organize their future shopping efficiently.
 
-## Get started
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
+✨ Features
 
-2. Start the app
+Add, delete, and manage multiple stores.
 
-   ```bash
-   npx expo start
-   ```
+Swipe left on a store card to reveal a delete button.
 
-In the output, you'll find options to open the app in a
+Expand store cards to add, view, or remove items.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Modal input for adding store names and items.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Only one item input modal opens at a time for a smooth UX.
 
-## Get a fresh project
+Clean and responsive UI with touch-friendly buttons.
 
-When you're ready, run:
 
-```bash
-npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+📸 Screenshots / Demo
 
-## Learn more
+(Include GIFs or screenshots here)
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+🚀 Getting Started
+Requirements
 
-Join our community of developers creating universal apps.
+Node.js (v18+ recommended)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Expo CLI (for easy testing)
+
+npm install -g expo-cli
+
+Installation
+git clone https://github.com/yourusername/store-item-app.git
+cd store-item-app
+npm install
+expo start
+
+
+Scan the QR code with the Expo Go app (iOS/Android) to test the app on your phone.
+
+📁 Project Structure
+/components
+  ├─ AddStoreButton.tsx     # Floating button to add stores
+  ├─ StoreCard.tsx          # Displays store, swipeable delete button, expandable item list
+  ├─ StoreInput.tsx         # Modal to add a store
+  ├─ ItemInput.tsx          # Modal to add items
+App.tsx
+
+
+
+🔮 Future Improvements
+
+Persist stores and items with local storage or Firebase.
+
+Add search and filter functionality.
+
+Improve animations for better UX.
