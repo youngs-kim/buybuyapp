@@ -6,6 +6,9 @@ import StoreCard from '../components/StoreCard';
 
 export default function App() {
   const [stores, setStores] = useState<string[]>([]);
+  const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(
+    null
+  );
 
   const addStore = (store: string) => {
     setStores([...stores, store]);
@@ -13,6 +16,11 @@ export default function App() {
 
   const deleteStore = (index: number) => {
     setStores(stores.filter((_, i) => i !== index));
+    if (expandedCardIndex === index) setExpandedCardIndex(null);
+  };
+
+  const toggleCard = (index: number) => {
+    setExpandedCardIndex((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -22,11 +30,15 @@ export default function App() {
           data={stores}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => (
-            <StoreCard name={item} onDelete={() => deleteStore(index)} />
+            <StoreCard
+              name={item}
+              onDelete={() => deleteStore(index)}
+              expanded={expandedCardIndex === index}
+              onToggle={() => toggleCard(index)}
+            />
           )}
         />
 
-        {/* Use the reusable AddStoreButton component */}
         <AddStoreButton onAddStore={addStore} />
       </View>
     </GestureHandlerRootView>

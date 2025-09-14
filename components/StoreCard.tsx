@@ -12,44 +12,38 @@ import ItemInput from './ItemInput';
 interface StoreCardProps {
   name: string;
   onDelete: () => void;
+  expanded: boolean;
+  onToggle: () => void;
 }
 
-const StoreCard: React.FC<StoreCardProps> = ({ name, onDelete }) => {
-  const [expanded, setExpanded] = useState(false);
+const StoreCard: React.FC<StoreCardProps> = ({
+  name,
+  onDelete,
+  expanded,
+  onToggle,
+}) => {
   const [items, setItems] = useState<string[]>([]);
   const [itemModalVisible, setItemModalVisible] = useState(false);
 
-  const addItem = (item: string) => {
-    setItems([...items, item]);
-  };
-
-  const deleteItem = (index: number) => {
+  const addItem = (item: string) => setItems([...items, item]);
+  const deleteItem = (index: number) =>
     setItems(items.filter((_, i) => i !== index));
-  };
 
-  // Right swipe action (Delete button)
-  const renderRightActions = () => {
-    return (
-      <View style={styles.rightAction}>
-        <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
-          <Text style={styles.deleteText}>X</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const renderRightActions = () => (
+    <View style={styles.rightAction}>
+      <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+        <Text style={styles.deleteText}>X</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <Swipeable overshootRight={false} renderRightActions={renderRightActions}>
       <View style={styles.card}>
-        {/* Store Header */}
-        <TouchableOpacity
-          style={styles.header}
-          onPress={() => setExpanded(!expanded)}
-        >
+        <TouchableOpacity style={styles.header} onPress={onToggle}>
           <Text style={styles.storeName}>{name}</Text>
         </TouchableOpacity>
 
-        {/* Expanded Section */}
         {expanded && (
           <View style={styles.expandedSection}>
             <FlatList
@@ -77,9 +71,8 @@ const StoreCard: React.FC<StoreCardProps> = ({ name, onDelete }) => {
           </View>
         )}
 
-        {/* Item Modal */}
         <ItemInput
-          visible={itemModalVisible}
+          visible={expanded && itemModalVisible}
           onClose={() => setItemModalVisible(false)}
           onSubmit={addItem}
         />
@@ -117,14 +110,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   deleteButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#ff4d4d',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  deleteText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
+  deleteText: { color: '#fff', fontWeight: 'bold', fontSize: 14 },
   expandedSection: { marginTop: 10 },
   itemRow: {
     flexDirection: 'row',
@@ -134,10 +127,14 @@ const styles = StyleSheet.create({
   },
   item: { fontSize: 16 },
   deleteItemButton: {
-    backgroundColor: '#ccc',
-    padding: 4,
+    backgroundColor: '#e73d3dff',
     borderRadius: 5,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  deleteItemText: { color: '#fff', fontWeight: 'bold' },
   addButton: {
     marginTop: 10,
     backgroundColor: '#4628a7ff',

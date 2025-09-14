@@ -18,7 +18,7 @@ interface AddStoreButtonProps {
 const AddStoreButton: React.FC<AddStoreButtonProps> = ({
   onAddStore,
   size = 60,
-  color = '#FF6B6B',
+  color = '#520082ff',
   icon = '+',
 }) => {
   const [storeInputVisible, setStoreInputVisible] = useState(false);
