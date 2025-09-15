@@ -37,7 +37,7 @@ export default function App() {
               onToggle={() => toggleCard(index)}
             />
           )}
-          contentContainerStyle={{ paddingBottom: 100 }} // <-- add extra padding for footer
+          contentContainerStyle={{ paddingBottom: 100 }}
         />
 
         <AddStoreButton onAddStore={addStore} />
