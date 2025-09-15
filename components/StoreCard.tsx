@@ -14,6 +14,7 @@ interface StoreCardProps {
   onDelete: () => void;
   expanded: boolean;
   onToggle: () => void;
+  onLongPress?: () => void; // 🔥 NEW
 }
 
 const StoreCard: React.FC<StoreCardProps> = ({
@@ -21,6 +22,7 @@ const StoreCard: React.FC<StoreCardProps> = ({
   onDelete,
   expanded,
   onToggle,
+  onLongPress, // 🔥 NEW
 }) => {
   const [items, setItems] = useState<string[]>([]);
   const [itemModalVisible, setItemModalVisible] = useState(false);
@@ -40,7 +42,12 @@ const StoreCard: React.FC<StoreCardProps> = ({
   return (
     <Swipeable overshootRight={false} renderRightActions={renderRightActions}>
       <View style={styles.card}>
-        <TouchableOpacity style={styles.header} onPress={onToggle}>
+        <TouchableOpacity
+          style={styles.header}
+          onPress={onToggle}
+          onLongPress={onLongPress} // 🔥 drag starts here
+          delayLongPress={200} // optional: shorter hold time
+        >
           <Text style={styles.storeName}>{name}</Text>
           {items.length > 0 && <View style={styles.redDot} />}
         </TouchableOpacity>
