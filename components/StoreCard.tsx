@@ -42,6 +42,7 @@ const StoreCard: React.FC<StoreCardProps> = ({
       <View style={styles.card}>
         <TouchableOpacity style={styles.header} onPress={onToggle}>
           <Text style={styles.storeName}>{name}</Text>
+          {items.length > 0 && <View style={styles.redDot} />}
         </TouchableOpacity>
 
         {expanded && (
@@ -143,4 +144,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   addText: { color: '#fff', fontWeight: 'bold' },
+  redDot: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#e67171ff',
+  },
 });
